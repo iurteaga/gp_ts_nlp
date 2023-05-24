@@ -1,0 +1,40 @@
+# Bandit object information
+# Algorithm as dict
+[bandit_algorithm]
+name=ThompsonSampling
+
+# Defintion of bandit arms
+[bandit_arm]
+scope=pretraining
+name=mask_prob,leave_unmasked_prob,random_token_prob
+range=0.05,0.55
+# If delta, then range will be used
+delta_per_arm=0.05
+
+[bandit_reward]
+pretrain_val_loss=delta
+
+# GP model functions and parameters
+# All functions as per gpytorch function string calls
+[gp_model]
+mean_function=gpytorch.means.ZeroMean()
+kernel_function=gpytorch.kernels.ScaleKernel(gpytorch.kernels.RBFKernel())
+llh_function=gpytorch.likelihoods.GaussianLikelihood()
+
+[gp_model_initialization]
+covar_module.base_kernel.lengthscale=0.25
+covar_module.outputscale=1.
+likelihood.noise_covar.noise=1.
+
+# GP training parameters
+[training]
+# Do not call gpytorch mll function loss here, just name 
+loss=gpytorch.mlls.ExactMarginalLogLikelihood
+n_train_max_iters=100
+loss_epsilon=0.01
+
+[optimization]
+optimizer=torch.optim.Adam
+[optimization_params]
+lr=0.1
+
