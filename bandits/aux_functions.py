@@ -1,4 +1,8 @@
 #!/usr/bin/python
+"""
+@author: Iñigo Urteaga
+"""
+
 import gpytorch
 from configparser import ConfigParser 
 

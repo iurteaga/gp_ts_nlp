@@ -1,4 +1,7 @@
 #!/usr/bin/python
+"""
+@authors: Iñigo Urteaga and Moulay-Zaidane Draidia
+"""
 
 # General imports
 import sys,os,time

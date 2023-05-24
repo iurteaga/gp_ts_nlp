@@ -1,3 +1,6 @@
+"""
+@authors: Iñigo Urteaga and Moulay-Zaidane Draidia
+"""
 
 import pandas as pd
 import plotly.express as px

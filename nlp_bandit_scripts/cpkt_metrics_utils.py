@@ -1,4 +1,7 @@
 #!/usr/bin/python
+"""
+@authors: Iñigo Urteaga and Moulay-Zaidane Draidia
+"""
 
 # Imports: python modules
 import sys, os, re, time

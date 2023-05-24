@@ -1,4 +1,7 @@
 #!/usr/bin/python
+"""
+@author: Iñigo Urteaga
+"""
 
 # Imports: python modules
 import numpy as np

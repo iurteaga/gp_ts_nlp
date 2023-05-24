@@ -1,4 +1,7 @@
 #!/bin/bash
+#"""
+# @author: Iñigo Urteaga
+#"""
 
 #################### PROCESS SCRIPT ARGUMENTS  ########################
 # Helper for script
