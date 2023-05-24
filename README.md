@@ -29,13 +29,13 @@ Two examples are provided:
 
 - bandit_config/b_all_mprob_005_050/b_gp_zero_rbf_pretrain_val_loss_delta
 
-    To execute GP-TS $\psi=\left(\rho, \gamma, \lambda\right): where the bandit optimizes over all MLM dynamic masking hyperparameters.
+    To execute GP-TS $\psi=\left(\rho, \gamma, \lambda\right)$: where the bandit optimizes over all MLM dynamic masking hyperparameters.
     The bandit search space is a three-dimensional hypercube $\Psi$,
     with no previous expert guidance on hyperparameter selection.
     
 - bandit_config/b_mprob_005_050/b_gp_zero_rbf_pretrain_val_loss_delta
     
-    To execute GP-TS $\rho$: where the bandit arm is the masking probability $\rho$ of replacing an input token with the \textit{mask} token
+    To execute GP-TS $\rho$: where the bandit arm is the masking probability $\rho$ of replacing an input token with the mask token
 
 ### bandits
 
