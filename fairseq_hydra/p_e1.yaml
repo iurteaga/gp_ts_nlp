@@ -1,0 +1,60 @@
+# @package _group_
+common:
+  fp16: true
+  log_format: simple
+  log_interval: 100
+  seed: 1
+
+checkpoint:
+  save_dir: ???
+  no_epoch_checkpoints: true
+  patience: 5
+  reset_dataloader: true
+  reset_meters: true
+  reset_optimizer: false
+  reset_lr_scheduler: false
+  
+task:
+  _name: masked_lm
+  data: ???
+  sample_break_mode: complete
+  tokens_per_sample: 512
+  mask_prob: 0.15
+  leave_unmasked_prob: 0.1
+  random_token_prob: 0.1
+  
+criterion: masked_lm
+
+dataset:
+  batch_size: 32
+  ignore_unused_valid_subsets: true
+  skip_invalid_size_inputs_valid_test: true
+  # To avoid subprocesses in data loading
+  num_workers: 0
+
+optimizer:
+  _name: adam
+  weight_decay: 0.01
+  adam_betas: (0.9,0.98)
+  adam_eps: 1e-06
+
+lr_scheduler:
+  _name: polynomial_decay
+  # Note that because we are not resetting the scheduler per-interaction
+  # lr_scheduler operates across interactions
+  warmup_updates: 10000
+  total_num_update: 1000000
+
+optimization:
+  # Max epoch is 1, max_update is big, so max_epoch is hit first
+  max_epoch: 1
+  max_update: 1000000
+  update_freq: [16]
+  lr: [0.0005]
+  clip_norm: 1.0
+  
+model:
+  _name: roberta
+  max_positions: 512
+  dropout: 0.1
+  attention_dropout: 0.1
