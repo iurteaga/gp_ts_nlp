@@ -1,0 +1,30 @@
+% !TEX root = ../main.tex
+\begin{table}[!h]
+	\caption{Gaussian Process prior and hyperparameters.}
+	\vspace*{-2ex}
+	\label{tab:gp_prior}
+	\begin{center}
+%		\resizebox{\columnwidth}{!}{
+		\begin{tabular}{|c|c|}
+			\hline
+			Hyperparameter\cellcolor[gray]{0.6} & Initial Value \cellcolor[gray]{0.6} \\ \hline
+\multicolumn{2}{|c|}{\cellcolor[gray]{0.9} GP Model}\\ \hline 
+Mean Function & Constant \\ \hline 
+Prior constant & 0 \\ \hline 
+Kernel Function & Scaled RBF Kernel \\ \hline 
+Prior output-scale & 1 \\ \hline 
+Prior length-scale & 0.25 \\ \hline
+\multicolumn{2}{|c|}{\cellcolor[gray]{0.9} Observation Model}\\ \hline 
+Likelihood function & Gaussian \\ \hline 
+Noise variance & 1 \\ \hline 
+\multicolumn{2}{|c|}{\cellcolor[gray]{0.9} Training details}\\ \hline 
+Loss function & ExactMarginalLogLikelihood \\ \hline 
+train max iters & 100 \\ \hline 
+loss epsilon & 0.01 \\ \hline 
+\multicolumn{2}{|c|}{\cellcolor[gray]{0.9} Optimizer } \\ \hline 
+optimizer & adam \\ \hline 
+lr & 0.1 \\ \hline 
+		\end{tabular}
+%	}
+	\end{center}
+\end{table}

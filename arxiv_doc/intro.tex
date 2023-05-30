@@ -1,0 +1,115 @@
+% !TEX root = main.tex
+In the field of Natural Language Processing (NLP),
+models for learning unsupervised representations from unlabeled text based on Transformer architectures~\citep{vaswani2017attention}
+are the state-of-the-art on a variety of tasks~\citep{kalyan2021ammus}.
+
+Transformer-based language models (TLMs) like BERT~\citep{bert}, RoBERTa~\citep{roberta},
+and their linage of advanced models~\citep{Amatriain2023},
+rely on the combination of an unsupervised pre-training of the model, and a subsequent task-specific fine-tuning procedure. 
+%via additional neural network layers targeted to the task of interest.
+%
+TLMs are pre-trained over large unlabeled text data using self-supervision, 
+to learn the relationships between different sentences or words of the input.
+Once the TLM is pre-trained over large volumes of data, it can be used in various downstream tasks, by fine-tuning task-specific model layers.
+%
+With pre-training, TLMs learn language representations
+that are useful across downstream tasks,
+minimizing the need and burden of retraining the entire model from scratch, again, for each task.
+Extensive pre-training can lead to downstream performance improvements, \ie it is worth learning complex TLMs in huge natural language corpora before fine-tuning them for particular tasks. 
+
+%Beyond general NLP tasks,
+Many have replicated the pre-train-then-fine-tune strategy in different domains,
+\eg pre-training BERT with scientific~\citep{j-Beltagy2019}
+and biomedical corpora~\citep{j-Lee2020,j-Alsentzer2019,j-Gu2021};
+or in-house, industry-specific TLMs~\citep{kalyan2021ammus}. %~\citep{dahlmann2021ebert, kalyan2021ammus} 
+%
+In addition, continual pre-training
+---taking a model pre-trained with general corpora to continue pre-training it with in-domain data---
+is of great value,
+yielding significant downstream gains~\citep{j-Gururangan2020}.
+
+Even if conceptually simple and empirically powerful, pre-training is challenging and expensive.
+Beyond the significant resources needed to pre-train the original BERT model by~\citet{bert},
+the improvements of RoBERTa~\citep{roberta} relied on orders of magnitude higher computational resources~\citep{j-kaplan2020}.
+%These increases in performance are characterized by power-laws in complexity~\citep{j-kaplan2020}.
+In addition, the relationship between TLM architecture,
+training corpus, pre-training hyperparameters, and evaluation metrics is complex and obscure. 
+Therefore, previously overlooked pre-training design choices,
+\eg pre-training hyperparameter selection,
+result in significant performance differences.
+
+With this work, we aim to improve the pre-training procedure of TLMs,
+by \textit{sequentially} selecting hyperparameters that result in a more efficient and superior pre-training performance.
+%
+We hypothesize that an interactive selection of pre-training hyperparameters can accelerate and improve pre-training,
+\ie we can achieve a better metric value in fewer epochs.
+It is critical not only to achieve superior performance,
+but to reduce the computational cost,
+steering clear from time- and resource-expensive procedures.
+Increased efficiency in TLM pre-training is paramount
+amidst concerns pertaining to the carbon footprint of large language models~\citep{patterson2021carbon};
+and specifically, the significant impact of hyperparameter selection
+on resource utilization and power consumption~\citep{puvis-de-chavannes-etal-2021-hyperparameter}.
+
+Our TLM pre-training use-case is \textit{random} dynamic masking of Masked Language Models (MLMs)
+---in contrast to rule or task-based MLM dynamic masking solutions proposed in the literature~\citep{spanbert,ernie}.
+Even though~\citet{roberta} showed the benefits of random dynamic masking,
+the search for optimal masking hyperparameters is often carried out based on heuristic techniques and grid-based search.
+
+In machine learning (ML), hyperparameter selection is commonly addressed as a black-box optimization problem,
+which can be solved using
+evolutionary algorithms~\citep{b-evolutionaryalgos},
+entropy search methods~\citep{j-Hennig2012,ip-Hernandez-Lobato2014},
+and Bayesian optimization (BO)~\citep{j-Frazier2018}.
+In particular, BO can tackle the problem of optimizing an unknown objective function with possibly noisy evaluations~\citep{ip-Snoek2012},
+and of speeding up resource allocation to promising hyperparameter configurations~\citep{hyperband}.
+Aligned with the recent successes of~\citet{j-turner2021bayesian} in hyperparameter selection via Bayesian optimization,
+we propose a BO framework for sequential tuning of MLM pre-training hyperparameters.
+Our framework is different from BO techniques that speed up hyperparameter set evaluations,
+such as Hyperband~\citep{hyperband}, which is a pure-exploration adaptive resource allocation algorithm
+for apportioning resources among configurations in the non-stochastic setting.
+
+We here cast the TLM pre-training procedure as a sequential decision process,
+in which at each interaction, a reinforcement learning agent
+selects an action (\eg pre-training hyperparameters) to maximize cumulative rewards (\eg the pre-training metric of interest).
+%
+To accommodate the black-box nature of the pre-training objective function,
+we fit a probabilistic surrogate model to the empirical evaluations of the pre-training metric,
+and propose a bandit-based technique for its sequential optimization.
+In the MLM dynamic masking use case, the bandit actions are the dynamic masking probabilities;
+and the MLM performance, the unknown function the bandit is trying to maximize,
+based on estimates computed in the validation set.
+
+Contrary to dynamic masking techniques that decide which subsets of tokens to mask via combinatorial optimization and dynamic programming~\citep{j-Vu2020};
+we target online, sequential selection of masking hyperparameters for accelerated and improved pre-training.
+In contrast to proposals that adapt the language model's masking policy to a particular task of interest~\citep{j-Kang2020},
+we devise a generic online optimization framework that,
+by sequential selection of MLM design choices,
+provides fast and superior TLM pre-training performance, when pre-training ---from-scratch and continually--- across diverse corpora.
+
+\paragraph*{The contributions}\hspace*{-2ex} of this work are:
+\begin{itemize}[leftmargin=*]
+	\item To present a bandit-based framework for efficient online optimization of TLM pre-training.
+	Specifically, to formulate a Gaussian Process based Thompson sampling (GP-TS) algorithm for sequential MLM loss minimization.
+	The novelty lays on modeling TLM pre-training validation losses with a Gaussian process reward model,
+	and on formulating a Thompson sampling policy that minimizes them.
+	
+	\item To showcase empirically how GP-TS pre-trains TLMs better and faster:
+	both when pre-training from-scratch and continually, across a variety of corpora.
+	Besides, to show that GP-TS pre-trained TLMs provide top fine-tuned performance across diverse in-domain tasks, in fewer interactions.	
+	
+	\item To demonstrate that GP-TS's \textit{sequential selection} of how many tokens of the input to mask ---and how to mask them--- 
+	results in improved and accelerated dynamic MLM pre-training, enabling significant resource utilization savings.	
+\end{itemize}
+
+To the best of our knowledge,
+this work is the first
+to address online optimization of TLM pre-training with bandit-based Bayesian optimization, 
+and to showcase its performance and resource efficiency benefits.
+
+The manuscript is organized as follows:
+Section~\ref{sec:background} provides the background on Bayesian optimization, multi-armed bandits and TLM pre-training;
+Section~\ref{sec:method} describes the proposed GP-TS method for TLM pre-training optimization;
+with its empirical performance evaluated in Section~\ref{sec:experiments}.
+Concluding remarks are provided in Section~\ref{sec:conclusion}.
+\vspace*{-1ex}

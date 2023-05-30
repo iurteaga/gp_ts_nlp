@@ -1,0 +1,24 @@
+% !TEX root = main.tex
+
+\begin{table}[!h]
+	\caption{Summary statistics of the pre-training datasets.}
+	\vspace*{-2ex}
+	\label{tab:pretraining_dataset_details} 
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}\hline
+			\multicolumn{2}{c|}{Dataset \cellcolor[gray]{0.6}} & Total word count \cellcolor[gray]{0.6}  & Average words per sentence \cellcolor[gray]{0.6} \\ \hline
+			% wikic4
+			\cellcolor[gray]{0.95} & Training \cellcolor[gray]{0.95} &  4,517,625,794 \cellcolor[gray]{0.95} &  \; 35.9 \cellcolor[gray]{0.95} \\  
+			\cellcolor[gray]{0.95} & Validation \cellcolor[gray]{0.95} & \; 735,950,955\cellcolor[gray]{0.95} & \; 35.6 \cellcolor[gray]{0.95} \\  
+			\multirow{-3}{*}{\cellcolor[gray]{0.95} \texttt{wiki-c4} } & Test \cellcolor[gray]{0.95} & \; 735,571,833 \cellcolor[gray]{0.95}& \; 35.6 \cellcolor[gray]{0.95} \\ \hline 
+			% medical
+			\cellcolor[gray]{1.0} & Training \cellcolor[gray]{1.0} &  \; 402,720,632 \cellcolor[gray]{1.0} & 216.7 \cellcolor[gray]{1.0} \\  
+			\cellcolor[gray]{1.0} & Validation \cellcolor[gray]{1.0} & \;\;\;  82,340,235 \cellcolor[gray]{1.0} & 658.7 \cellcolor[gray]{1.0} \\  
+			\multirow{-3}{*}{\cellcolor[gray]{1.0} \texttt{mimic} } & Test \cellcolor[gray]{1.0} & \;\;  18,735,884  \cellcolor[gray]{1.0}& 187.3 \cellcolor[gray]{1.0} \\ \hline 
+			% ecommerce
+			\cellcolor[gray]{0.95} & Training \cellcolor[gray]{0.95} & 3,935,845,017 \cellcolor[gray]{0.95} & \;\; 5.6 \cellcolor[gray]{0.95} \\  
+			\cellcolor[gray]{0.95} & Validation \cellcolor[gray]{0.95} & \;\;  494,802,278 \cellcolor[gray]{0.95} & \;\; 5.5 \cellcolor[gray]{0.95} \\  
+			\multirow{-3}{*}{\cellcolor[gray]{0.95} \texttt{e-commerce} } & Test \cellcolor[gray]{0.95} & \;\;  482,733,197 \cellcolor[gray]{0.95} & \;\; 5.5 \cellcolor[gray]{0.95} \\ \hline 
+		\end{tabular}
+	\end{center}
+\end{table}

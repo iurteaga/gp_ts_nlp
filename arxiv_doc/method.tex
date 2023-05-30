@@ -1,0 +1,166 @@
+% !TEX root = main.tex
+We cast TLM pre-training as a sequential decision process,
+to be solved by a multi-armed bandit agent
+that interactively optimizes the analytically unknown pre-training loss, 
+based on its sequentially observed empirical evaluations.
+% General view
+%In a sequential decision view of the TLM pre-training procedure,
+We define pre-training steps,
+\ie a fixed number of stochastic gradient updates $u$ in the training set,
+as bandit interactions $t=1,\cdots,T$.
+The goal is to minimize the TLM pre-training objective $l(\cdot |\psi)$ given tunable hyperparameters $\psi$,
+with (stochastic) evaluations of the loss function in the validation set.
+
+Pre-training hyperparameters at interaction $t$, $\psi_t$, are the bandit's arms, \ie $a_t=\psi_t$.
+%
+% Use-case view
+For MLM pre-training with dynamic masking,
+at each bandit interaction,
+the agent selects hyperparameters $\psi$ (the proportion of tokens to mask and their masking probabilities),
+pre-trains the TLM for certain stochastic updates to minimize the MLM loss, %as in Equation~\eqref{eq:mlm_minibatch},
+and evaluates its performance in the validation subset,
+as per Equation~\eqref{eq:mlm_averagedloss}.
+%
+To accommodate the black-box nature of the pre-training objective, for which only stochastic evaluations are available,
+we formulate a surrogate reward function (leveraging empirical MLM validation loss estimates)
+for the bandit to maximize, as it sequentially selects which arm to play.
+%In the following, we show this approach is equivalent to optimizing the TLM pre-training objective.
+
+\subsection{From MLM pre-training to Gaussian process-based regret minimization}
+\label{ssec:method_rewards}
+%We devise a bandit reward function that results in the sequential optimization of the MLM pre-training objective.
+%\vspace*{-2ex}
+%\paragraph*{Bandit rewards as empirical MLM loss differences.}\hspace*{-2ex}
+We transform the empirical pre-training validation loss at each MAB interaction
+into a reward quantity for it's sequential minimization by the bandit agent.
+%To guarantee that the cumulative rewards a bandit maximizes result in minimization of the pre-training objective, 
+Specifically, we compute bandit rewards as the normalized difference in averaged empirical MLM losses between bandit interactions, \ie
+
+\begin{align}
+r_t (\psi_t) &= \frac{
+	[- \bar{l}_t(D_{val}; \psi_t)] 
+		- [- \bar{l}_{t-1}(D_{val}; \psi_{t-1})]
+	}{
+		[- \bar{l}_{t-1}(D_{val}; \psi_{t-1})]
+	} \;.
+\label{eq:reward_mlm_delta}
+\end{align}
+
+By normalizing reward differences per-interaction,
+we mitigate the potential non-stationary effect sequentially selected hyperparameters might have on TLM pre-training.
+With rewards as (normalized) empirical MLM loss differences,
+we capture how much (relative) improvement each action provides.
+
+% NEW
+Rewards in Equation~\eqref{eq:reward_mlm_delta}
+are based on stochastic draws from an analytically unknown objective function,
+\ie only empirical estimates $\bar{l}_t(\cdot)$ of the MLM objective are available.
+% OLD
+%\vspace*{-2ex}
+%\paragraph*{Bandit reward functions as Gaussian processes.}\hspace*{-2ex}
+%TLM pre-training is carried out based on empirical risk minimization:
+%\ie only empirical estimates $\bar{y}_t$ of the true MLM objective are available.
+%Namely, 
+%$\bar{y}_t \sim l(\cdot|\psi_t)$.
+%
+To accommodate these noisy observations of the unknown loss function $l(\cdot|\psi)$
+---that we aim at optimizing with respect to its hyperparameters $\psi$---
+we model the bandit reward function via a Gaussian process (GP) model $f(\cdot ;\theta)$ of the pre-training objective,
+with observed rewards independent and identically (i.i.d.) distributed as
+\vspace*{-1ex}
+\begin{align}
+r_t(\psi_t) &=f(\psi_t ; \theta) + \epsilon_t \;,
+\label{eq:rewards_gp}
+\vspace*{-2ex}
+\end{align} 
+where $\epsilon_t$ denotes the stochastic nature of each of the observed rewards ---based on empirical estimates computed in Equation~\eqref{eq:reward_mlm_delta}.
+Hence, we overcome the black-box nature of the pre-training objective (\eg the MLM loss) by modeling observed rewards as realizations of a noisy surrogate GP model~\citep{b-Rasmussen2005}.
+
+The mean $\mu(\cdot)$ and kernel functions $k(\cdot,\cdot)$ of a GP $f(\cdot) \sim GP(\mu(\cdot), k(\cdot,\cdot))$ determine the reward function class:
+\ie the regularity and smoothness of the pre-training loss.
+These are parameterized prior-functions $\mu(\cdot|\theta_{\mu})$ and $k(\cdot, \cdot|\theta_k)$,
+which can be fitted to the observed data $r_{1:T} = (r_1, \cdots, r_T)$ at inputs $\psi_{1:T} = (\psi_1, \cdots, \psi_T)$~\citep{b-Rasmussen2005}.
+For instance, via Type-II maximum likelihood estimation (MLE) of the GP parameters $\theta=(\theta_{\mu}, \theta_k)$,
+%\begin{equation}
+$
+\hat{\theta} =\argmax_{\theta} \log p\left(r_{1:T}|f(\psi_{1:T} | \theta) \right) %\;,
+$,
+%\label{eq:gp_hyperparameter_fit}
+%\end{equation}
+where the data likelihood $p(r|f (\cdot; \theta))$ is a function of the observation noise probability distribution.
+%
+Given a fitted GP, posterior inference
+---computing the predictive distribution of a new datapoint $\psi^\prime$ after observing $\psi_{1:T}$---
+can be performed in closed or approximate form~\cite{ip-Titsias2009,ip-Flaxman2015,ip-Pleiss2018}.
+
+\subsection{GP-Thompson sampling for TLM pre-training.}
+\label{ssec:method_gpts}
+Leveraging the GP reward model in Equation~\eqref{eq:rewards_gp},
+we devise a bandit-based interactive method that executes a Thompson sampling (TS) policy
+for TLM pre-training optimization.
+We resort to Thompson sampling~\cite{j-Russo2018} due to both its implementation flexibility and efficiency,
+as well as its competitive empirical performance with theoretical guarantees in many settings~\cite{ip-Agrawal2013,ip-Krause2011,ip-Nguyen2020,ip-Srinivas2010}.
+
+The proposed Gaussian process-based Thompson sampling (GP-TS)
+---with pseudo-code provided in Algorithm~\ref{alg:ts_pretrain_hyperparams}---
+views the TLM pre-training objective as an unknown black-box function with inputs $a_t=\psi_t$ and outputs $r_t(\psi_t)$ as in Equation~\eqref{eq:reward_mlm_delta}.
+%
+GP-TS makes decisions on what bandit arm $a_t=\psi_t$ to play at each TLM pre-training interaction $t=1,\cdots,T,$
+informed by its GP reward model of Equation~\eqref{eq:rewards_gp}, 
+to maximize its observed cumulative rewards $R_T=\sum_{t=1}^T r_{t}(\psi_t)$.
+
+%GP TS
+%\vspace*{-1ex}
+\begin{algorithm}
+	\caption{GP-TS for TLM pre-training}
+	\label{alg:ts_pretrain_hyperparams}
+	\begin{algorithmic}[1]
+		\STATE {\bfseries Input}: TLM and pre-training corpus
+		\STATE {\bfseries Input}: Pre-training hyperparameter space $\Psi$
+		\STATE {\bfseries Input}: Number of pre-training interactions $T$, number of updates per-interaction $u$
+		\STATE {\bfseries Input}: GP prior functions $\mu(\cdot)$ and $k(\cdot, \cdot)$, \\ with initial hyperparameters $\theta_0$		
+		\STATE {\bfseries Initialize}: $\A=\Psi$, $\hat{\theta}_1=\theta_0$, $\HH_1=\emptyset$
+		\FOR{$t=1, \cdots, T$}
+		\STATE Draw posterior sample from GP, 
+			$\mu_{a}^{(t)} \sim f(\mu_t(a|\hat{\theta}_t), k_t(a, a^\prime|\hat{\theta}_t)) \;.$
+		\STATE Select arm based on drawn posterior sample, 
+			$a_{t}=\argmax_{a^\prime \in \A} \mu_{a^\prime}^{(t)} \;.$
+		\STATE Run TLM pre-training for $u$ steps, with hyperparameters $\psi_t=a_t \;.$
+		\STATE Compute pre-trained TLM validation loss, 
+			$\bar{l}_t(D_{val};\psi_t)$ as in Equation~\eqref{eq:mlm_averagedloss}.
+		\STATE Observe bandit reward, 
+			$r_{t}(\psi_t)$ as in Equation~\eqref{eq:reward_mlm_delta}.
+		\STATE Update bandit history 
+			$\HH_{1:t}=\HH_{1:t-1} \cup \left\{a_{t}=\psi_t, r_{t}(\psi_t)\right\} \;.$
+		\STATE Fit GP model with $\HH_{1:t}$, 
+			$\hat{\theta}_{t+1} =\argmax_{\theta} \log p\left(r_{1:t}|f(\psi_{1:t} ; \theta) \right) \;.$
+		\ENDFOR
+	\end{algorithmic}
+\end{algorithm}
+%\vspace*{-1ex}
+
+GP-TS accommodates continuous arms $a_t=\psi_t$,
+with dimensionality determined by the pre-training hyperparameter space $\psi \in \Psi$.
+Any TLM can be used within the proposed framework,
+as long as the hyperparameter space $\psi \in \Psi$ is identified,
+and rewards as in Equation~\eqref{eq:reward_mlm_delta} are computed for a pre-training objective $l(\cdot|\psi)$ of interest.
+
+%\vspace*{-2ex}
+%\paragraph*{GP-TS policy.}\hspace*{-2ex}
+GP-TS draws predictive function samples for the next TLM pre-training interaction
+from its GP reward model posterior,
+updated at every bandit interaction as indicated in Step 7 of Algorithm~\ref{alg:ts_pretrain_hyperparams}.
+As in other TS methods, these samples are used to determine ---in Step 8 of Algorithm~\ref{alg:ts_pretrain_hyperparams}---
+the arms (hyperparameters $\psi_t$) to be used in the next bandit interaction.
+%
+After $u$ pre-training steps\footnote{
+	Note that $u$ stochastic gradient updates might or might not correspond to a full pre-training epoch $e$.
+},
+the model's MLM validation loss is computed
+to evaluate the observed bandit rewards $r_{t}(\psi_t)$ of Equation~\eqref{eq:reward_mlm_delta}.
+After each interaction $t$, new evidence is collected in Step 12
+to re-fit the GP model to the observed input (action)-output (rewards) history $\HH_{1:t}$.
+For instance, via Type-II MLE as in Step 13 of Algorithm~\ref{alg:ts_pretrain_hyperparams},
+although other GP parameter optimization procedures might be used
+---see Appendix~\ref{asec:GP_details} for details on GP models and posterior inference.
+%

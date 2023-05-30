@@ -1,0 +1,39 @@
+% !TEX root = ../main.tex
+\begin{table}[!h]
+	\caption{RoBERTa pre-training hyperparameters.}
+	\vspace*{-2ex}
+	\label{tab:roberta_pretrain}
+	\begin{center}
+%		\resizebox{\columnwidth}{!}{
+		\begin{tabular}{|c|c|}
+			\hline
+			Hyperparameter\cellcolor[gray]{0.6} & Value \cellcolor[gray]{0.6} \\ \hline
+Architecture & RoBERTa base \\ \hline 
+Task& masked lm \\ \hline 
+Criterion & masked lm \\ \hline 
+\multicolumn{2}{|c|}{\cellcolor[gray]{0.9} Model details}\\ \hline 
+dropout & 0.1 \\ \hline 
+attention-dropout & 0.1 \\ \hline 
+weight-decay & 0.01 \\ \hline 
+\multicolumn{2}{|c|}{\cellcolor[gray]{0.9} Training details}\\ \hline 
+batch-size & 32 \\ \hline 
+update-freq & 16 \\ \hline 
+sample-break-mode & complete \\ \hline 
+tokens-per-sample & 512 \\ \hline  
+\multicolumn{2}{|c|}{\cellcolor[gray]{0.9} Optimizer } \\ \hline 
+optimizer &adam \\ \hline 
+adam-betas & (0.9,0.98) \\ \hline 
+adam-eps & 1e-6 \\ \hline 
+clip-norm & 1.0 \\ \hline 
+\multicolumn{2}{|c|}{\cellcolor[gray]{0.9} Learning rate} \\ \hline 
+lr &0.0005 \\ \hline 
+lr-scheduler & polynomial decay \\ \hline 
+linear-warmup-updates & 1000 \\ \hline 
+\multicolumn{2}{|c|}{\cellcolor[gray]{0.9} Dynamic masking } \\ \hline 
+mask-prob & $\rho$ \\ \hline 
+leave-unmasked-prob & 0.1 \\ \hline 
+random-token-prob & 0.1 \\ \hline 
+		\end{tabular}
+%	}
+	\end{center}
+\end{table}

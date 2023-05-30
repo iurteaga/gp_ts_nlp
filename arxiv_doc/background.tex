@@ -1,0 +1,141 @@
+% !TEX root = main.tex
+
+\subsection{Bayesian optimization and bandits}
+\label{ssec:mab}
+
+\paragraph*{Bayesian optimization}\hspace*{-2ex} (BO) is a framework to address hyperparameter optimization in ML~\citep{ip-Snoek2012,ip-Klein2017,j-turner2021bayesian},
+and many closely related applications~\citep{j-Negoescu2011,j-Calandra2016,ic-Frazier2016,ip-Hernandez-Lobato2017,j-Candelieri2018}.
+%in engineering, control systems, materials or drug discovery
+BO relies on a probabilistic surrogate model of the objective function,
+to tackle the problem of simultaneously fitting and optimizing a high-dimensional, non-convex function with unknown smoothness, and possibly
+noisy evaluations~\citep{shahriari2015bayesian,j-Frazier2018}.
+Due to the black-box nature of BO, the surrogate model must provide a measure of uncertainty, for which 
+generative models, Bayesian neural networks and Gaussian processes are used~\citep{j-Maddox2021}.
+Using this surrogate model, an acquisition function determines the next promising candidate to evaluate.
+To address the challenge of learning about the environment (\ie exploration)
+while simultaneously maximizing the observed outcomes (\ie exploitation),
+the multi-armed bandit provides a useful framework~\citep{j-Lai1985}.
+% A framework for addressing the challenge of learning the environment an agent is interacting with (\ie exploration),
+% while simultaneously maximizing the outcomes observed (exploitation) is the multi-armed bandit.
+
+\paragraph*{The multi-armed bandit}\hspace*{-2ex} (MAB) is
+%a well-studied 
+an abstraction for problems that require learning while simultaneously maximizing attained rewards,
+\ie balancing the exploration-exploitation tradeoff~\citep{b-Lattimore2020}.
+A MAB is a sequential decision process
+% between an agent and an unknown environment 
+that requires decision-making under uncertainty~\citep{j-Slivkins2019}.
+
+At each interaction $t=1,\cdots, T$,
+a bandit agent chooses an action $a_t \in \A$ from a (not necessarily finite) set of actions $\A$,
+and it observes stochastic reward $r_t$ drawn from an unknown distribution of the selected arm, $a_t$,
+%This reward function is unknown, dependent on properties
+often characterized parametrically, $r_t\sim p(\cdot|a_t, \theta)$.
+%
+The MAB agent's goal is to maximize (expected) cumulative rewards, $R_T=\sum_{t=1}^T \mu_{a,t}$,
+with each arm's expected reward denoted as $\mu_a = \eValue{p}{r|a,\theta}$.
+The challenge is on the lack of knowledge about the reward generating mechanism,
+which demands learning its properties (\eg its parameters), as it interacts with the environment.
+
+A plethora of MAB algorithms have been proposed and analyzed over the years,
+from computing optimal strategies~\citep{j-Gittins1979} and greedy approaches~\citep{j-Auer2002},
+to upper confidence interval~\citep{j-Lai1987,ip-Kaufmann2012} 
+and Thompson sampling~\citep{j-Thompson1935} algorithms.
+%The latter bandit strategies rely on a model-based view of the stochastic MAB, where a reward model is specified with unknown, to be learned parameters.
+%
+For models in the exponential family,
+the latter have been empirically and theoretically proven to perform competitively ~\citep{j-Lai1987,ip-Kaufmann2012,ip-Agrawal2012,ip-Agrawal2013,ic-Korda2013}, 
+and extensions have been proposed
+% to accommodate reward functions not in the exponential family have also been proposed,
+to model observed rewards 
+via ensembles of models~\citep{ip-Lu2017},
+Gaussian mixture models~\citep{ip-Urteaga2018, j-Urteaga2018},
+Gaussian processes~\citep{ip-Srinivas2010,ip-Gruenewaelder2010},
+and neural networks~\citep{ic-Osband2016}.
+
+In the context of BO in general, and MABs in particular, reward uncertainty quantification is critical.
+%On the one hand, ~\citet{ip-Riquelme2018} emphasized the need for investigating how to sidestep the slow convergence of the uncertainty estimates in neural network based bandit algorithms.
+%On the other, 
+Gaussian processes~\citep{b-Rasmussen2005} provide not only adequate Bayesian uncertainty estimates,
+but a flexible solution for surrogate models that encode smoothness assumptions of the payoff function~\citep{ip-Krause2011, ip-Bogunovic2016, ip-Nguyen2020}.
+We resort to a Gaussian process reward model in the proposed bandit-based BO framework for TLM pre-training.
+
+\subsection{Language model pre-training and the Masked Language Model}
+\label{ssec:roberta_pretraining}
+
+Pre-training enables learning representations that generalize across tasks,
+\ie it allows for a language model to be better initialized for quick fine-tuning (while avoiding overfitting) to downstream tasks.
+TLMs learn language representations in pre-training based on one (or more) self-supervised task.
+%whose labels are generated automatically. 
+Two popular pre-training objectives are Masked Language Model (MLM) and Next Sentence Prediction (NSP)~\citep{bert}.
+%
+We focus on MLM pre-training as in~\citep{bert,roberta};
+where for an input sequence of words or tokens,
+a random sample of the tokens is replaced with the $[MASK]$ token,
+and the goal is to predict them.
+
+For an input sequence $d$ of $N$ tokens, with special tokens delimiting them,
+\begin{equation}
+d \equiv [CLS], q_1, \cdots , q_N, [EOS]
+\end{equation}
+MLMs select a random sample of the tokens $q_{i}, i=\{1, \cdots, N\}$, replace them with the mask, 
+and learn to predict these masked tokens.
+%\vspace*{-2ex}
+%\paragraph*{Dynamic masking.}\hspace*{-2ex}
+For pre-training the original BERT model~\citep{bert}, a random but \textit{static} subset of the input sequence tokens was replaced with the mask.
+
+~\citet{roberta} proposed a \textit{dynamic} masking procedure,
+which generates a new masking pattern (given a fixed probability of masking) for every input sequence.
+\citet{roberta} demonstrate that this dynamic approach is beneficial when pre-training for more steps or with larger datasets.
+%attaining better pre-trained and fine-tuned performance.
+
+Dynamic masking relies on several hyperparameters:
+($i$) the probability $\rho$ of replacing an input token with the mask,
+($ii$) the probability $\gamma$ that a masked token is left unmasked,
+and ($iii$) the probability $\lambda$ of replacing a token with a random token, instead of with the mask.
+Online optimization of these hyperparameters $\psi=\left(\rho, \gamma, \lambda\right)$ is the use-case for our experiments in Section~\ref{sec:experiments}.
+
+\paragraph*{MLM pre-training}\hspace*{-2ex}
+aims at minimizing the MLM loss:
+a function of the original ($D$) and masked ($\widehat{D}$) datasets,
+the TLM architecture with its parameters $w\in W$,
+and pre-training hyperparameters $\psi\in\Psi$.
+
+The MLM objective is the cross-entropy loss of predicting the masked tokens in the masked sequence $\widehat{d}\in\widehat{D}$, where we denote with $m_{i}=\{0,1\}$ whether tokens $q_i, i=\{1, \cdots, N\}$, from the original input sequence $d \in D$ have been masked in $\widehat{d}$:
+%Mathematically,
+\begin{align}
+l(d, \widehat{d}; w, \psi) &= -\log p(d|\widehat{d}; w, \psi)
+= -\sum_{i=1}^N m_{i} \log p(q_i|\widehat{q_i}; w, \psi) = -\hspace*{-1ex} \sum_{i=1}^N m_{i} \log \hspace*{-0.5ex}\left( \frac{e^{\left(\chi(\widehat{q_i};w, \psi)^\top \xi(q_i)\right)}}{\sum_{i^\prime=1}^{N} e^{\left(\chi(\widehat{q_{i}^\prime};w, \psi)^\top \xi(q_{i}^\prime)\right)}}\hspace*{-0.5ex}
+\right) \;,
+\label{eq:mlm_loss}
+\end{align}
+$\chi(\widehat{q_{i}};w, \psi)$ denotes the TLM's representation of the masked token $q_i$,
+and $\xi(q_i)$ is its original embedding.
+%We explicitly indicate the architecture parameters $w\in W$ and the hyperparameters $\psi$ of the pre-training and optimization procedures.
+
+The pre-training objective is to find the TLM that minimizes the MLM loss between the original dataset $D$ and its masked version $\widehat{D}$.
+%\begin{align}
+%\widehat{w}&=\argmin_{w \in W} l(D, \widehat{D}; w, \psi) \\
+%&= - \argmin_{w \in W} \sum_{d \in D} \sum_{l=1}^L m_l \log p(l_d|\widehat{l_d}; w,\psi) 
+%\end{align}
+%
+In practice, this minimization is executed via stochastic gradient-descent,
+run for $e=1,\cdots, E,$ epochs with random mini-batches $D_{e} \in D$ per epoch $e$,
+%\begin{align}
+$
+\widehat{w_e}=\argmin_{w \in W} l(D_{e}, \widehat{D_e}; w, \psi) \;.%\\
+$
+%&= - \argmin_{w \in W} \sum_{d \in D_b} \sum_{l_d=1}^L m_{l_d} \log p(l_d|\widehat{l_d}; w,\psi) \;.
+%\label{eq:mlm_minibatch}
+%\end{align}
+
+The analytical form of the MLM loss, a function of selected hyperparameters $\psi$ and the data where it is evaluated, is in general complex and unknown.
+However, estimates of the MLM loss are available at every pre-training epoch $e$.
+Namely, an empirical estimate of the MLM loss can be computed in the validation set.
+%
+For fair comparisons under different training setups (\eg mini-batch sizes and hyperparameters), per-epoch \textit{averaged} empirical MLM losses are computed in the validation dataset $D_{val}$,
+\begin{align}
+&\bar{l}(D_{val};\psi)=\bar{l}(D_{val}, \widehat{D_{val}}; w, \psi) = - \sum_{d \in D_{val}} \frac{\sum_{i=1}^{N_d} m_{i} \log p(q_i|\widehat{q_i}; w, \psi)}{\sum_{i^\prime=1}^{N_d} m_{i^\prime}} \; ,
+\label{eq:mlm_averagedloss}
+\end{align}
+where we drop the dependency with respect to TLM parameters $w$ and the masked validation dataset $\widehat{D_{val}}$ to avoid notation clutter.

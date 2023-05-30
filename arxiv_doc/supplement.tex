@@ -1,0 +1,148 @@
+% !TEX root = main.tex
+\appendix
+
+\clearpage
+\section{Appendix: Gaussian process details}
+\label{asec:GP_details}
+
+%\vspace*{-2ex}
+\paragraph*{Gaussian processes.}\hspace*{-2ex}
+A GP is a stochastic process, ${f(\psi) : \psi \in \Psi }$, such that
+for any finite set of elements $\psi_1, \cdots , \psi_k \in \Psi$,
+the associated finite collection of random variables $f(\psi_1), \cdots, f(\psi_k)$, 
+has a multivariate Gaussian distribution~\citep{b-Rasmussen2005}.
+
+A GP $f(\psi) \sim GP(\mu(\cdot), k(\cdot,\cdot))$ can be understood as a probability distribution over arbitrary functions, with $\mu(\psi) = \mathbb{E}[f(\psi)]$ its mean function, and $k(\cdot, \cdot)$ the covariance kernel, \ie $k(\psi, \psi^\prime)=\mathbb{E}[(f(\psi)-\mu(\psi))^\top(f(\psi^\prime)-\mu(\psi^\prime))]$.
+%\begin{align}
+%\hspace*{-2ex}\begin{cases}
+%\mu(\psi) = \mathbb{E}[f(\psi)] \;, \\
+%k(\psi, \psi^\prime)=\mathbb{E}[(f(\psi)-m(\psi))^\top(f(\psi^\prime)-m(\psi^\prime))] \;.
+%\end{cases}
+%\end{align}
+%\vspace*{-2ex}
+%\paragraph*{GP model fitting.}\hspace*{-2ex}
+
+The mean and kernel functions determine the GP function class: \ie the regularity and smoothness assumptions of the modeled data.
+These are parameterized prior-functions $\mu(\cdot|\theta_{\mu})$ and $k(\cdot, \cdot|\theta_k)$,
+which can be fitted to the observed data $r_{1:T} = (r_1, \cdots, r_T)$ at inputs $\psi_{1:T} = (\psi_1, \cdots, \psi_T)$.
+
+For instance, via Type-II maximum likelihood estimation (MLE) of the GP model's hyperparameters $\theta=(\theta_{\mu}, \theta_k)$,
+%\begin{equation}
+$
+\hat{\theta} =\argmax_{\theta} \log p\left(r_{1:T}|f(\psi_{1:T} | \theta) \right) %\;,
+$,
+%\label{eq:gp_hyperparameter_fit}
+%\end{equation}
+where the data likelihood $p(r|f (\cdot; \theta))$ is a function of the observation noise's probability distribution.
+Bayesian approaches to hyperparameter selection for GP model training can also be implemented~\citep{b-Rasmussen2005}.
+
+%\vspace*{-2ex}
+\paragraph*{Gaussian process posteriors.}\hspace*{-2ex}
+Given a fitted GP, posterior inference
+---computing the predictive distribution of a new datapoint $\psi^\prime$ after observing $\psi_{1:T}$---
+can be performed in closed form for the Gaussian observation noise case.
+For example, when the noise in Equation~\eqref{eq:rewards_gp} is \iid drawn from $\epsilon_t \sim \N{\epsilon | 0, \sigma_{\epsilon}^2}$.
+
+Formally, given a set of observations $r_{1:T}$ at inputs $\psi_{1:T}$,
+the posterior distribution of $f$ is a GP with the following mean and covariance functions:
+\begin{align}
+&\mu_T(\psi) = k_T(\psi)^\top (K_T + \sigma_{\epsilon}^2 I)^{-1}r_{1:T} \; , \nonumber \\
+&k_T(\psi, \psi^\prime) = k(\psi,\psi^\prime) - k_T(\psi)^\top (K_T + \sigma_{\epsilon}^2 I)^{-1} k_T(\psi^\prime) \;, \nonumber \\
+%\sigma_T^2 &= k_T(\psi, \psi) \\
+&\text{with}
+\begin{cases}
+k_T (\psi) = \left( k(\psi_1, \psi), \cdots, k(\psi_T, \psi)\right)^\top \;,\\
+K_T = \left( k(\psi,\psi^\prime) \right)_{\forall \psi, \psi^\prime \in \psi_{1:T}} \;.
+\end{cases} 
+%\text{is the (positive semi-definite) kernel matrix}
+\label{eq:gp_posterior}
+\end{align}
+These closed-form posterior inference expressions can be efficiently computed, both in exact and approximate ways~\citep{b-Rasmussen2005,ip-Pleiss2018}.
+%
+Posterior inference with observation noise beyond the Gaussian assumption is an active research area, with many approximate techniques available for practitioners~\citep{ic-Snelson2006,ip-Titsias2009,ip-Wilson2015,ip-Flaxman2015}.
+
+\clearpage
+\section{Appendix: Implementation and experimentation details}
+\label{asec:implementation_details}
+
+\subsection{Gaussian process}
+\label{asec:implementation_details_gp}
+
+We implement Gaussian process modules based on GPyTorch~\citep{gpytorch},
+and execute all experiments with a GP process prior and GP fitting details as described in Table~\ref{tab:gp_prior}.
+\input{./hparams/gp_prior}
+
+We take the most conservative approach on GP-TS prior and hyperparameter selection:
+we utilize an uninformative prior, with no preference for any hyperparameter configuration.
+This is the less assuming yet more challenging experimental set-up,
+where we evaluate whether GP-TS can successfully learn ---without any prior knowledge--- to find good hyperparameters.
+
+Based on bandit theory and practice,
+informative priors can accelerate convergence if properly specified
+(\ie when more mass is put into favorable regions of the hyperparameter space);
+while slowing down convergence, if incorrectly specified
+(\ie when mass is put in unfavorable regions of the space).
+Evaluating how different priors affect GP-TS are experiments left as future work.
+
+\clearpage
+\subsection{RoBERTa pre-training}
+\label{asec:implementation_details_roberta_pretrain}
+
+% Computational
+We pre-train all RoBERTa models as provided by~\citet{fairseq},
+with the BERT-base architecture of 125M parameters, by minimizing the MLM loss with dynamic masking
+in a server with 8 Tesla V100-SXM2-32GB GPUs.
+%
+We execute the RoBERTa pre-training procedure as described in Fairseq's RoBERTa pre-training tutorial\footnote{
+	Available at \url{https://github.com/pytorch/fairseq/blob/main/examples/roberta/README.pretraining.md}
+},
+with specific hyperparameters as described in Table~\ref{tab:roberta_pretrain}.
+
+The interactions for \texttt{wiki-c4} and \texttt{e-commerce} contain 1000 updates each (\ie $u=1000$), while we reduce the number of updates per-interaction to $u=500$ when pre-training with \texttt{mimic} notes.
+
+\input{./hparams/roberta_pretrain}
+
+\clearpage
+\subsection{Summary statistics of the computational cost}
+\label{asec:computational_overhead}
+
+We provide in Table~\ref{tab:pretraining_compcost} summary statistics
+on the execution time of GP-TS pre-training in our experiments,
+as per details in Section~\ref{asec:implementation_details_roberta_pretrain}.
+The per-interaction, average execution time of pre-training is:
+33,316 seconds for the \texttt{wiki-c4} dataset;
+37,392 seconds for the \texttt{e-commerce} data;
+and 1,489 seconds for \texttt{MIMIC} notes.
+It only takes about 20 seconds on average to execute GP-TS per-interaction.
+Hence, the overhead is of 0.05\% for the biggest dataset, and 1\% for the smallest one.
+We note that the TLM pre-training implementation of~\citet{fairseq} leverages GPU computations,
+while GP-TS is executed within a single CPU ---with no GPU acceleration.
+
+\input{./tables/tab_pretraining_compcost}
+
+\subsection{Summary statistics of the pre-training datasets}
+\label{asec:pretraining_dataset_details}
+
+We split each pre-training dataset into 80\%-10\%-10\% training, validation and test sets for our experiments, with summary statistics of each set provided in Table~\ref{tab:pretraining_dataset_details}.
+
+\input{./tables/tab_pretraining_datasets}
+
+
+\newpage
+\subsection{RoBERTa fine-tuning}
+\label{asec:implementation_details_roberta_fine-tune}
+
+The specific RoBERTa hyperparameters used for the in-domain fine-tuning downstream tasks are described in Tables~\ref{tab:roberta_finetune_eclassification}--\ref{tab:roberta_finetune_medical}.
+
+\input{./hparams/roberta_finetune_eclassification}
+\input{./hparams/roberta_finetune_esimilarity}
+\input{./hparams/roberta_finetune_equality}
+\input{./hparams/roberta_finetune_medical}
+
+\clearpage
+\subsection{Summary statistics of the fine-tuning datasets}
+\label{asec:finetuning_dataset_details}
+
+We split each per-task fine-tuning dataset into training, development and test sets for our experiments, with summary statistics of each set provided in Table~\ref{tab:finetuning_dataset_details}.
+
+\input{./tables/tab_finetuning_datasets}

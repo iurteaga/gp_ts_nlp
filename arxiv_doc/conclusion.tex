@@ -1,0 +1,24 @@
+% !TEX root = main.tex
+We present a multi-armed bandit-based Bayesian optimization framework for the sequential selection of pre-training hyperparameters
+towards optimized Transformer-based language model performance.
+%
+We develop and evaluate an interactive, Gaussian process-based Thompson sampling (GP-TS) framework
+for accelerated language model pre-training. % loss minimization.
+We model noisy evaluations of the pre-training objective (\eg the MLM loss) as drawn from a surrogate Gaussian process that the bandit agent aims to minimize.
+%We prove the mathematical equivalence between the proposed bandit reward function's cumulative maximization and pre-training loss minimization.
+
+We provide empirical evidence of how GP-TS,
+when applied to MLM dynamic masking,
+attains superior and accelerated (both from-scratch and continual) pre-training performance,
+along with excellent in-domain downstream metric values.
+%
+While \citet{roberta} randomly select ---with fixed probability---
+which input tokens to mask,
+we show that \textit{sequentially} adapting the masking hyperparameters with GP-TS results in enhanced and efficient pre-training.
+Notably, GP-TS interactively selects hyperparameters that result in top performing models faster,
+enabling significant resource efficiency, of critical importance in practice.
+
+Building upon our formulation and the provided evidence,
+we envision follow-up work investigating the proposed method's ability 
+to successfully pre-train large-scale models in general purpose corpora,
+as well as for optimizing domain-specific models.

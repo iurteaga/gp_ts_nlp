@@ -1,0 +1,42 @@
+% !TEX root = ../main.tex
+\begin{table}[!h]
+	\caption{RoBERTa fine-tuning hyperparameters for the e-commerce title quality downstream task.}
+	\label{tab:roberta_finetune_equality}
+	\begin{center}
+%		\resizebox{\columnwidth}{!}{
+		\begin{tabular}{|c|c|}
+			\hline
+			Hyperparameter\cellcolor[gray]{0.6} & Value \cellcolor[gray]{0.6} \\ \hline
+Architecture & RoBERTa base \\ \hline 
+\multicolumn{2}{|c|}{\cellcolor[gray]{0.9} Task}\\ \hline 
+Task& sentence prediction \\ \hline 
+Criterion & sentence prediction \\ \hline 
+num-classes & 2 \\ \hline 
+max-positions & 512 \\ \hline
+init-token & 0  \\ \hline 
+separator-token & 2  \\ \hline 
+\multicolumn{2}{|c|}{\cellcolor[gray]{0.9} Model details}\\ \hline 
+dropout & 0.1 \\ \hline 
+attention-dropout & 0.1 \\ \hline 
+\multicolumn{2}{|c|}{\cellcolor[gray]{0.9} Dataset}\\ \hline 
+batch-size & 32 \\ \hline 
+update-freq & 1 \\ \hline 
+required-batch-size-multiple & 1 \\ \hline
+max-tokens & 4400 \\ \hline
+skip-invalid-size-inputs-valid-test & True \\ \hline
+\multicolumn{2}{|c|}{\cellcolor[gray]{0.9} Optimizer } \\ \hline 
+optimizer &adam \\ \hline 
+weight-decay & 0.1 \\ \hline 
+adam-betas & (0.9,0.98) \\ \hline 
+adam-eps & 1e-6 \\ \hline 
+\multicolumn{2}{|c|}{\cellcolor[gray]{0.9} Learning rate} \\ \hline 
+lr-scheduler & polynomial decay \\ \hline 
+lr & 1e-5 \\ \hline 
+linear-warmup-updates & 1000 \\ \hline 
+max-updates & 100000 \\ \hline 
+max-epoch & 10 \\ \hline
+clip-norm & 0.0 \\ \hline 
+		\end{tabular}
+%	}
+	\end{center}
+\end{table}

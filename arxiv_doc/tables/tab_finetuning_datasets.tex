@@ -1,0 +1,24 @@
+% !TEX root = ../main.tex
+
+\begin{table}[!h]
+	\caption{Summary statistics of the fine-tuning task datasets.}
+	\vspace*{-2ex}
+	\label{tab:finetuning_dataset_details} 
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}\hline
+			\multicolumn{2}{c|}{Dataset \cellcolor[gray]{0.6}} & Total sentence count \cellcolor[gray]{0.6}  & \shortstack{Average words per sentence \\ Input0 -- Input1} \cellcolor[gray]{0.6} \\ \hline
+			% e-commerce title classification & similarity
+			\cellcolor[gray]{0.95} & Training  \cellcolor[gray]{0.95} & 224,745 \cellcolor[gray]{0.95} & 10.9 -- 10.9\cellcolor[gray]{0.95} \\  
+			\cellcolor[gray]{0.95} & Dev \cellcolor[gray]{0.95} & \;\; 6,035 \cellcolor[gray]{0.95} & 10.9 -- 10.8 \cellcolor[gray]{0.95} \\  
+			\multirow{-3}{*}{\cellcolor[gray]{0.95} \shortstack{\texttt{e-commerce title} \\ \texttt{classification \& similarity}} } & Test \cellcolor[gray]{0.95} &  12,311 \cellcolor[gray]{0.95}& 10.9 -- 10.8 \cellcolor[gray]{0.95} \\ \hline 
+			% e-commerce title quality
+			\cellcolor[gray]{1.0} & Training \cellcolor[gray]{1.0} & 49,420 \cellcolor[gray]{1.0} & 10.6 -- NA \cellcolor[gray]{1.0} \\  
+			\cellcolor[gray]{1.0} & Dev \cellcolor[gray]{1.0} & \; 2,629 \cellcolor[gray]{1.0} & 9.8 -- NA \cellcolor[gray]{1.0} \\  
+			\multirow{-3}{*}{\cellcolor[gray]{1.0} \texttt{e-commerce title quality} } & Test \cellcolor[gray]{1.0} & 5,174 \cellcolor[gray]{1.0}& 9.8 -- NA \cellcolor[gray]{1.0} \\ \hline 
+			% medical MLI
+			\cellcolor[gray]{0.95} & Training \cellcolor[gray]{0.95} & 11,232 \cellcolor[gray]{0.95} & 15.9 -- 5.5\cellcolor[gray]{0.95} \\  
+			\cellcolor[gray]{0.95} & Dev \cellcolor[gray]{0.95} & \; 1,395 \cellcolor[gray]{0.95} & 16.9 -- 5.4 \cellcolor[gray]{0.95} \\  
+			\multirow{-3}{*}{\cellcolor[gray]{0.95} \texttt{medical MLI} } & Test \cellcolor[gray]{0.95} & \; 1,422 \cellcolor[gray]{0.95} & 15.4 -- 5.4 \cellcolor[gray]{0.95} \\ \hline 
+		\end{tabular}
+	\end{center}
+\end{table}

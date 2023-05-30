@@ -1,0 +1,24 @@
+% !TEX root = supplement.tex
+
+\begin{table}[!h]
+	\caption{Per-interaction execution time of TLM pre-training and GP-TS: average time in seconds, plus-minus the standard deviation.}
+	\vspace*{-2ex}
+	\label{tab:pretraining_compcost} 
+	\begin{center}
+%		\resizebox{\columnwidth}{!}{
+		\begin{tabular}{|c|c|c|c|}\hline
+			 \cellcolor[gray]{0.5} &  \multicolumn{3}{c|}{Execution time in seconds \cellcolor[gray]{0.5} } \\ \cline{2-4}
+			\multirow{-2}{*}{\cellcolor[gray]{0.5}Dataset} & TLM Pre-training \cellcolor[gray]{0.6} & GP-TS $\rho$ \cellcolor[gray]{0.6} & GP-TS $\psi$ \cellcolor[gray]{0.6} \\ \hline
+			% wikic4
+			\cellcolor[gray]{0.95} \texttt{wiki-c4} 
+				& $33,316 \pm 395 \; s$ \cellcolor[gray]{0.95} &  $19 \pm 6 \; s$  \cellcolor[gray]{0.95} &  $21 \pm 6 \; s$ \cellcolor[gray]{0.95} \\  \hline 
+			% medical
+			\cellcolor[gray]{1.0} \texttt{mimic} 
+				& $1489 \pm 46 \; s$ \cellcolor[gray]{1.0} &  $16 \pm 5 \; s$ \cellcolor[gray]{1.0} & $17 \pm 5 \; s$ \cellcolor[gray]{1.0} \\  \hline 
+			% ecommerce
+			\cellcolor[gray]{0.95} \texttt{e-commerce}
+				& $37,392 \pm 494 \; s$ \cellcolor[gray]{0.95} & $21 \pm 3 \; s$ \cellcolor[gray]{0.95} & $23 \pm 10 \; s$ \cellcolor[gray]{0.95} \\  \hline 
+		\end{tabular}
+%	}
+	\end{center}
+\end{table}

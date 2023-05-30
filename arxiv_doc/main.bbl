@@ -1,0 +1,521 @@
+\begin{thebibliography}{68}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Agrawal and Goyal(2012)]{ip-Agrawal2012}
+S.~Agrawal and N.~Goyal.
+\newblock {Analysis of Thompson Sampling for the multi-armed bandit problem}.
+\newblock In \emph{{Conference on Learning Theory}}, pages 39--1, 2012.
+
+\bibitem[Agrawal and Goyal(2013)]{ip-Agrawal2013}
+S.~Agrawal and N.~Goyal.
+\newblock {Further Optimal Regret Bounds for Thompson Sampling}.
+\newblock In \emph{{Artificial Intelligence and Statistics}}, pages 99--107,
+  2013.
+
+\bibitem[Alsentzer et~al.(2019)Alsentzer, Murphy, Boag, Weng, Jin, Naumann, and
+  McDermott]{j-Alsentzer2019}
+E.~Alsentzer, J.~R. Murphy, W.~Boag, W.-H. Weng, D.~Jin, T.~Naumann, and
+  M.~McDermott.
+\newblock {Publicly available clinical BERT embeddings}.
+\newblock \emph{arXiv preprint arXiv:1904.03323}, 2019.
+
+\bibitem[Amatriain(2023)]{Amatriain2023}
+X.~Amatriain.
+\newblock {Transformer models: an introduction and catalog}.
+\newblock \emph{arXiv preprint arXiv:2302.07730}, 2023.
+
+\bibitem[Auer et~al.(2002)Auer, Cesa-Bianchi, and Fischer]{j-Auer2002}
+P.~Auer, N.~Cesa-Bianchi, and P.~Fischer.
+\newblock {Finite-time Analysis of the Multiarmed Bandit Problem}.
+\newblock \emph{Machine Learning}, 47\penalty0 (2-3):\penalty0 235--256, May
+  2002.
+\newblock ISSN 0885-6125.
+\newblock \doi{10.1023/A:1013689704352}.
+
+\bibitem[Beltagy et~al.(2019)Beltagy, Lo, and Cohan]{j-Beltagy2019}
+I.~Beltagy, K.~Lo, and A.~Cohan.
+\newblock {SciBERT: A pretrained language model for scientific text}.
+\newblock \emph{arXiv preprint arXiv:1903.10676}, 2019.
+
+\bibitem[Bogunovic et~al.(2016)Bogunovic, Scarlett, and
+  Cevher]{ip-Bogunovic2016}
+I.~Bogunovic, J.~Scarlett, and V.~Cevher.
+\newblock Time-varying gaussian process bandit optimization.
+\newblock In \emph{Artificial Intelligence and Statistics}, pages 314--323.
+  PMLR, 2016.
+
+\bibitem[by~Facebook~Research(2022)]{robertabase_fairseq}
+F.~by~Facebook~Research.
+\newblock {RoBERTa: A Robustly Optimized BERT Pretraining Approach, pre-trained
+  model using the BERT-base architecture}, Sept. 2022.
+\newblock Available online at {\url
+  {https://dl.fbaipublicfiles.com/fairseq/models/roberta.base.tar.gz}}.
+
+\bibitem[Calandra et~al.(2016)Calandra, Seyfarth, Peters, and
+  Deisenroth]{j-Calandra2016}
+R.~Calandra, A.~Seyfarth, J.~Peters, and M.~P. Deisenroth.
+\newblock {Bayesian optimization for learning gaits under uncertainty}.
+\newblock \emph{Annals of Mathematics and Artificial Intelligence}, 76\penalty0
+  (1):\penalty0 5--23, 2016.
+
+\bibitem[Candelieri et~al.(2018)Candelieri, Perego, and
+  Archetti]{j-Candelieri2018}
+A.~Candelieri, R.~Perego, and F.~Archetti.
+\newblock {Bayesian optimization of pump operations in water distribution
+  systems}.
+\newblock \emph{Journal of Global Optimization}, 71\penalty0 (1):\penalty0
+  213--235, 2018.
+
+\bibitem[Devlin et~al.(2018)Devlin, Chang, Lee, and Toutanova]{bert}
+J.~Devlin, M.-W. Chang, K.~Lee, and K.~Toutanova.
+\newblock {BERT: Pre-training of deep bidirectional transformers for language
+  understanding}.
+\newblock \emph{arXiv preprint arXiv:1810.04805}, 2018.
+\newblock URL \url{https://arxiv.org/abs/1810.04805}.
+
+\bibitem[Flaxman et~al.(2015)Flaxman, Wilson, Neill, Nickisch, and
+  Smola]{ip-Flaxman2015}
+S.~Flaxman, A.~Wilson, D.~Neill, H.~Nickisch, and A.~Smola.
+\newblock {Fast Kronecker Inference in Gaussian Processes with non-Gaussian
+  Likelihoods}.
+\newblock In F.~Bach and D.~Blei, editors, \emph{Proceedings of the 32nd
+  International Conference on Machine Learning}, volume~37 of \emph{Proceedings
+  of Machine Learning Research}, pages 607--616, Lille, France, 07--09 Jul
+  2015. PMLR.
+\newblock URL \url{https://proceedings.mlr.press/v37/flaxman15.html}.
+
+\bibitem[Frazier(2018)]{j-Frazier2018}
+P.~I. Frazier.
+\newblock {A tutorial on Bayesian optimization}.
+\newblock \emph{arXiv preprint arXiv:1807.02811}, 2018.
+
+\bibitem[Frazier and Wang(2016)]{ic-Frazier2016}
+P.~I. Frazier and J.~Wang.
+\newblock {Bayesian optimization for materials design}.
+\newblock In \emph{Information science for materials discovery and design},
+  pages 45--75. Springer, 2016.
+
+\bibitem[Gardner et~al.(2018)Gardner, Pleiss, Bindel, Weinberger, and
+  Wilson]{gpytorch}
+J.~R. Gardner, G.~Pleiss, D.~Bindel, K.~Q. Weinberger, and A.~G. Wilson.
+\newblock {GPyTorch: Blackbox Matrix-Matrix Gaussian Process Inference with GPU
+  Acceleration}.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2018.
+
+\bibitem[Gittins(1979)]{j-Gittins1979}
+J.~C. Gittins.
+\newblock {Bandit Processes and Dynamic Allocation Indices}.
+\newblock \emph{Journal of the Royal Statistical Society. Series B
+  (Methodological)}, 41\penalty0 (2):\penalty0 148--177, 1979.
+\newblock ISSN 00359246.
+
+\bibitem[Gr\"unew\"alder et~al.(2010)Gr\"unew\"alder, Audibert, Opper, and
+  Shawe-Taylor]{ip-Gruenewaelder2010}
+S.~Gr\"unew\"alder, J.-Y. Audibert, M.~Opper, and J.~Shawe-Taylor.
+\newblock {Regret Bounds for Gaussian Process Bandit Problems}.
+\newblock In Y.~W. Teh and M.~Titterington, editors, \emph{Proceedings of the
+  Thirteenth International Conference on Artificial Intelligence and
+  Statistics}, volume~9 of \emph{Proceedings of Machine Learning Research},
+  pages 273--280, Chia Laguna Resort, Sardinia, Italy, 13--15 May 2010. PMLR.
+\newblock URL \url{http://proceedings.mlr.press/v9/grunewalder10a.html}.
+
+\bibitem[Gu et~al.(2021)Gu, Tinn, Cheng, Lucas, Usuyama, Liu, Naumann, Gao, and
+  Poon]{j-Gu2021}
+Y.~Gu, R.~Tinn, H.~Cheng, M.~Lucas, N.~Usuyama, X.~Liu, T.~Naumann, J.~Gao, and
+  H.~Poon.
+\newblock {Domain-specific language model pretraining for biomedical natural
+  language processing}.
+\newblock \emph{ACM Transactions on Computing for Healthcare (HEALTH)},
+  3\penalty0 (1):\penalty0 1--23, 2021.
+
+\bibitem[Gururangan et~al.(2020)Gururangan, Marasović, Swayamdipta, Lo,
+  Beltagy, Downey, and Smith]{j-Gururangan2020}
+S.~Gururangan, A.~Marasović, S.~Swayamdipta, K.~Lo, I.~Beltagy, D.~Downey, and
+  N.~A. Smith.
+\newblock {Don't Stop Pretraining: Adapt Language Models to Domains and Tasks}.
+\newblock \emph{arXiv preprint}, Apr. 2020.
+
+\bibitem[Hennig and Schuler(2012)]{j-Hennig2012}
+P.~Hennig and C.~J. Schuler.
+\newblock {Entropy Search for Information-Efficient Global Optimization}.
+\newblock \emph{Journal of Machine Learning Research}, 13\penalty0
+  (57):\penalty0 1809--1837, 2012.
+\newblock URL \url{http://jmlr.org/papers/v13/hennig12a.html}.
+
+\bibitem[Hern\'{a}ndez-Lobato et~al.(2014)Hern\'{a}ndez-Lobato, Hoffman, and
+  Ghahramani]{ip-Hernandez-Lobato2014}
+J.~M. Hern\'{a}ndez-Lobato, M.~W. Hoffman, and Z.~Ghahramani.
+\newblock {Predictive Entropy Search for Efficient Global Optimization of
+  Black-box Functions}.
+\newblock In Z.~Ghahramani, M.~Welling, C.~Cortes, N.~Lawrence, and K.~Q.
+  Weinberger, editors, \emph{Advances in Neural Information Processing
+  Systems}, volume~27. Curran Associates, Inc., 2014.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper/2014/file/069d3bb002acd8d7dd095917f9efe4cb-Paper.pdf}.
+
+\bibitem[Hern{\'a}ndez-Lobato et~al.(2017)Hern{\'a}ndez-Lobato, Requeima,
+  Pyzer-Knapp, and Aspuru-Guzik]{ip-Hernandez-Lobato2017}
+J.~M. Hern{\'a}ndez-Lobato, J.~Requeima, E.~O. Pyzer-Knapp, and
+  A.~Aspuru-Guzik.
+\newblock {Parallel and distributed Thompson sampling for large-scale
+  accelerated exploration of chemical space}.
+\newblock In \emph{International conference on machine learning}, pages
+  1470--1479. PMLR, 2017.
+
+\bibitem[Joshi et~al.(2020)Joshi, Chen, Liu, Weld, Zettlemoyer, and
+  Levy]{spanbert}
+M.~Joshi, D.~Chen, Y.~Liu, D.~S. Weld, L.~Zettlemoyer, and O.~Levy.
+\newblock {SpanBERT: Improving pre-training by representing and predicting
+  spans}.
+\newblock \emph{Transactions of the Association for Computational Linguistics},
+  8:\penalty0 64--77, 2020.
+
+\bibitem[Kalyan et~al.(2021)Kalyan, Rajasekharan, and
+  Sangeetha]{kalyan2021ammus}
+K.~S. Kalyan, A.~Rajasekharan, and S.~Sangeetha.
+\newblock Ammus: A survey of transformer-based pretrained models in natural
+  language processing.
+\newblock \emph{arXiv preprint arXiv:2108.05542}, 2021.
+
+\bibitem[Kang et~al.(2020)Kang, Han, and Hwang]{j-Kang2020}
+M.~Kang, M.~Han, and S.~J. Hwang.
+\newblock {Neural mask generator: Learning to generate adaptive word maskings
+  for language model adaptation}.
+\newblock \emph{arXiv preprint arXiv:2010.02705}, 2020.
+\newblock URL \url{https://arxiv.org/abs/2010.02705}.
+
+\bibitem[Kaplan et~al.(2020)Kaplan, McCandlish, Henighan, Brown, Chess, Child,
+  Gray, Radford, Wu, and Amodei]{j-kaplan2020}
+J.~Kaplan, S.~McCandlish, T.~Henighan, T.~B. Brown, B.~Chess, R.~Child,
+  S.~Gray, A.~Radford, J.~Wu, and D.~Amodei.
+\newblock Scaling laws for neural language models.
+\newblock \emph{arXiv preprint arXiv:2001.08361}, 2020.
+
+\bibitem[Kaufmann et~al.(2012)Kaufmann, Cappe, and Garivier]{ip-Kaufmann2012}
+E.~Kaufmann, O.~Cappe, and A.~Garivier.
+\newblock {On Bayesian Upper Confidence Bounds for Bandit Problems}.
+\newblock In N.~D. Lawrence and M.~Girolami, editors, \emph{Proceedings of the
+  Fifteenth International Conference on Artificial Intelligence and
+  Statistics}, volume~22 of \emph{Proceedings of Machine Learning Research},
+  pages 592--600, La Palma, Canary Islands, 21--23 Apr 2012. PMLR.
+
+\bibitem[Klein et~al.(2017)Klein, Falkner, Bartels, Hennig, and
+  Hutter]{ip-Klein2017}
+A.~Klein, S.~Falkner, S.~Bartels, P.~Hennig, and F.~Hutter.
+\newblock {Fast Bayesian Optimization of Machine Learning Hyperparameters on
+  Large Datasets}.
+\newblock In A.~Singh and J.~Zhu, editors, \emph{Proceedings of the 20th
+  International Conference on Artificial Intelligence and Statistics},
+  volume~54 of \emph{Proceedings of Machine Learning Research}, pages 528--536,
+  Fort Lauderdale, FL, USA, 20--22 Apr 2017. PMLR.
+\newblock URL \url{http://proceedings.mlr.press/v54/klein17a.html}.
+
+\bibitem[Korda et~al.(2013)Korda, Kaufmann, and Munos]{ic-Korda2013}
+N.~Korda, E.~Kaufmann, and R.~Munos.
+\newblock {Thompson Sampling for 1-Dimensional Exponential Family Bandits}.
+\newblock In C.~J.~C. Burges, L.~Bottou, M.~Welling, Z.~Ghahramani, and K.~Q.
+  Weinberger, editors, \emph{Advances in Neural Information Processing Systems
+  26}, pages 1448--1456. Curran Associates, Inc., 2013.
+
+\bibitem[Krause and Ong(2011)]{ip-Krause2011}
+A.~Krause and C.~Ong.
+\newblock {Contextual Gaussian Process Bandit Optimization}.
+\newblock In J.~Shawe-Taylor, R.~Zemel, P.~Bartlett, F.~Pereira, and K.~Q.
+  Weinberger, editors, \emph{Advances in Neural Information Processing
+  Systems}, volume~24. Curran Associates, Inc., 2011.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper/2011/file/f3f1b7fc5a8779a9e618e1f23a7b7860-Paper.pdf}.
+
+\bibitem[Lai(1987)]{j-Lai1987}
+T.~L. Lai.
+\newblock {Adaptive Treatment Allocation and the Multi-Armed Bandit Problem}.
+\newblock \emph{The Annals of Statistics}, 15\penalty0 (3):\penalty0
+  1091--1114, 1987.
+\newblock ISSN 00905364.
+
+\bibitem[Lai and Robbins(1985)]{j-Lai1985}
+T.~L. Lai and H.~Robbins.
+\newblock {Asymptotically Efficient Adaptive Allocation Rules}.
+\newblock \emph{Advances in Applied Mathematics}, 6\penalty0 (1):\penalty0
+  4--22, mar 1985.
+\newblock ISSN 0196-8858.
+\newblock \doi{10.1016/0196-8858(85)90002-8}.
+
+\bibitem[Lattimore and Szepesv{\'a}ri(2020)]{b-Lattimore2020}
+T.~Lattimore and C.~Szepesv{\'a}ri.
+\newblock \emph{Bandit algorithms}.
+\newblock Cambridge University Press, 2020.
+
+\bibitem[Lee et~al.(2020)Lee, Yoon, Kim, Kim, Kim, So, and Kang]{j-Lee2020}
+J.~Lee, W.~Yoon, S.~Kim, D.~Kim, S.~Kim, C.~H. So, and J.~Kang.
+\newblock {BioBERT: a pre-trained biomedical language representation model for
+  biomedical text mining}.
+\newblock \emph{Bioinformatics}, 36\penalty0 (4):\penalty0 1234--1240, 2020.
+
+\bibitem[Li et~al.(2018)Li, Jamieson, DeSalvo, Rostamizadeh, and
+  Talwalkar]{hyperband}
+L.~Li, K.~Jamieson, G.~DeSalvo, A.~Rostamizadeh, and A.~Talwalkar.
+\newblock {Hyperband: A Novel Bandit-Based Approach to Hyperparameter
+  Optimization}.
+\newblock \emph{Journal of Machine Learning Research}, 18\penalty0
+  (185):\penalty0 1--52, 2018.
+\newblock URL \url{http://jmlr.org/papers/v18/16-558.html}.
+
+\bibitem[Liu et~al.(2019)Liu, Ott, Goyal, Du, Joshi, Chen, Levy, Lewis,
+  Zettlemoyer, and Stoyanov]{roberta}
+Y.~Liu, M.~Ott, N.~Goyal, J.~Du, M.~Joshi, D.~Chen, O.~Levy, M.~Lewis,
+  L.~Zettlemoyer, and V.~Stoyanov.
+\newblock Roberta: A robustly optimized bert pretraining approach.
+\newblock \emph{arXiv preprint arXiv:1907.11692}, 2019.
+\newblock URL \url{https://arxiv.org/abs/1907.11692}.
+
+\bibitem[Lu and Roy(2017)]{ip-Lu2017}
+X.~Lu and B.~V. Roy.
+\newblock {Ensemble sampling}.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pages
+  3258--3266, 2017.
+
+\bibitem[Maddox et~al.(2021)Maddox, Balandat, Wilson, and Bakshy]{j-Maddox2021}
+W.~J. Maddox, M.~Balandat, A.~G. Wilson, and E.~Bakshy.
+\newblock {Bayesian Optimization with High-Dimensional Outputs}.
+\newblock \emph{arXiv preprint arXiv:2106.12997}, 2021.
+
+\bibitem[Merity et~al.(2016)Merity, Xiong, Bradbury, and Socher]{wikitext103}
+S.~Merity, C.~Xiong, J.~Bradbury, and R.~Socher.
+\newblock Pointer sentinel mixture models.
+\newblock \emph{arXiv preprint arXiv:1609.07843}, 2016.
+\newblock URL
+  \url{https://www.salesforce.com/products/einstein/ai-research/the-wikitext-dependency-language-modeling-dataset/}.
+
+\bibitem[Negoescu et~al.(2011)Negoescu, Frazier, and Powell]{j-Negoescu2011}
+D.~M. Negoescu, P.~I. Frazier, and W.~B. Powell.
+\newblock {The knowledge-gradient algorithm for sequencing experiments in drug
+  discovery}.
+\newblock \emph{INFORMS Journal on Computing}, 23\penalty0 (3):\penalty0
+  346--363, 2011.
+
+\bibitem[Nguyen et~al.(2020)Nguyen, Masrani, Brekelmans, Osborne, and
+  Wood]{ip-Nguyen2020}
+V.~Nguyen, V.~Masrani, R.~Brekelmans, M.~Osborne, and F.~Wood.
+\newblock {Gaussian Process Bandit Optimization of the Thermodynamic
+  Variational Objective}.
+\newblock In H.~Larochelle, M.~Ranzato, R.~Hadsell, M.~F. Balcan, and H.~Lin,
+  editors, \emph{Advances in Neural Information Processing Systems}, volume~33,
+  pages 5764--5775. Curran Associates, Inc., 2020.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper/2020/file/3f2dff7862a70f97a59a1fa02c3ec110-Paper.pdf}.
+
+\bibitem[{\~n}igo Urteaga and Wiggins(2018)]{j-Urteaga2018}
+{\~n}igo Urteaga and C.~H. Wiggins.
+\newblock {Nonparametric Gaussian Mixture Models for the Multi-Armed Bandit}.
+\newblock \emph{arXiv preprint arXiv:1808.02932}, 2018.
+
+\bibitem[Osband et~al.(2016)Osband, Blundell, Pritzel, and Roy]{ic-Osband2016}
+I.~Osband, C.~Blundell, A.~Pritzel, and B.~V. Roy.
+\newblock {Deep Exploration via Bootstrapped DQN}.
+\newblock In D.~D. Lee, M.~Sugiyama, U.~V. Luxburg, I.~Guyon, and R.~Garnett,
+  editors, \emph{Advances in Neural Information Processing Systems 29}, pages
+  4026--4034. Curran Associates, Inc., 2016.
+
+\bibitem[Ott et~al.(2019)Ott, Edunov, Baevski, Fan, Gross, Ng, Grangier, and
+  Auli]{fairseq}
+M.~Ott, S.~Edunov, A.~Baevski, A.~Fan, S.~Gross, N.~Ng, D.~Grangier, and
+  M.~Auli.
+\newblock {fairseq: A Fast, Extensible Toolkit for Sequence Modeling}.
+\newblock In \emph{Proceedings of NAACL-HLT 2019: Demonstrations}, 2019.
+
+\bibitem[Patterson et~al.(2021)Patterson, Gonzalez, Le, Liang, Munguia,
+  Rothchild, So, Texier, and Dean]{patterson2021carbon}
+D.~Patterson, J.~Gonzalez, Q.~Le, C.~Liang, L.-M. Munguia, D.~Rothchild, D.~So,
+  M.~Texier, and J.~Dean.
+\newblock Carbon emissions and large neural network training.
+\newblock \emph{arXiv preprint arXiv:2104.10350}, 2021.
+
+\bibitem[Pleiss et~al.(2018)Pleiss, Gardner, Weinberger, and
+  Wilson]{ip-Pleiss2018}
+G.~Pleiss, J.~Gardner, K.~Weinberger, and A.~G. Wilson.
+\newblock {Constant-Time Predictive Distributions for Gaussian Processes}.
+\newblock In J.~Dy and A.~Krause, editors, \emph{Proceedings of the 35th
+  International Conference on Machine Learning}, volume~80 of \emph{Proceedings
+  of Machine Learning Research}, pages 4114--4123. PMLR, 10--15 Jul 2018.
+\newblock URL \url{https://proceedings.mlr.press/v80/pleiss18a.html}.
+
+\bibitem[Pollard and Johnson(2016)]{mimic}
+T.~J. Pollard and A.~E. Johnson.
+\newblock {The MIMIC-III clinical database (version 1.4)}.
+\newblock \emph{The MIMIC-III Clinical Database. PhysioNet}, 2016.
+\newblock URL \url{https://doi.org/10.13026/C2XW26}.
+
+\bibitem[Puvis~de Chavannes et~al.(2021)Puvis~de Chavannes, Kongsbak, Rantzau,
+  and Derczynski]{puvis-de-chavannes-etal-2021-hyperparameter}
+L.~H. Puvis~de Chavannes, M.~G.~K. Kongsbak, T.~Rantzau, and L.~Derczynski.
+\newblock Hyperparameter power impact in transformer language model training.
+\newblock In \emph{Proceedings of the Second Workshop on Simple and Efficient
+  Natural Language Processing}, pages 96--118, Virtual, Nov. 2021. Association
+  for Computational Linguistics.
+\newblock \doi{10.18653/v1/2021.sustainlp-1.12}.
+\newblock URL \url{https://aclanthology.org/2021.sustainlp-1.12}.
+
+\bibitem[Rasmussen and Williams(2005)]{b-Rasmussen2005}
+C.~E. Rasmussen and C.~K.~I. Williams.
+\newblock \emph{{Gaussian Processes for Machine Learning}}.
+\newblock The MIT Press, 2005.
+
+\bibitem[Russo et~al.(2018)Russo, Roy, Kazerouni, Osband, and Wen]{j-Russo2018}
+D.~J. Russo, B.~V. Roy, A.~Kazerouni, I.~Osband, and Z.~Wen.
+\newblock {A Tutorial on Thompson Sampling}.
+\newblock \emph{{Foundations and Trends\textsuperscript{\textregistered} in
+  Machine Learning}}, 11\penalty0 (1):\penalty0 1--96, 2018.
+\newblock ISSN 1935-8237.
+\newblock \doi{10.1561/2200000070}.
+\newblock URL \url{http://dx.doi.org/10.1561/2200000070}.
+
+\bibitem[Shahriari et~al.(2015)Shahriari, Swersky, Wang, Adams, and
+  De~Freitas]{shahriari2015bayesian}
+B.~Shahriari, K.~Swersky, Z.~Wang, R.~P. Adams, and N.~De~Freitas.
+\newblock Taking the human out of the loop: A review of bayesian optimization.
+\newblock \emph{Proceedings of the IEEE}, 104\penalty0 (1):\penalty0 148--175,
+  2015.
+
+\bibitem[Shivade(2019)]{medMLI}
+C.~Shivade.
+\newblock {MedNLI - A Natural Language Inference Dataset For The Clinical
+  Domain (version 1.0.0).}
+\newblock PhysioNet. \url{https://doi.org/10.13026/C2RS98}, 2019.
+
+\bibitem[Slivkins(2019)]{j-Slivkins2019}
+A.~Slivkins.
+\newblock {Introduction to Multi-Armed Bandits}.
+\newblock \emph{Foundations and Trends in Machine Learning}, 12\penalty0
+  (1-2):\penalty0 1--286, 2019.
+\newblock ISSN 1935-8237.
+\newblock \doi{10.1561/2200000068}.
+\newblock URL \url{http://dx.doi.org/10.1561/2200000068}.
+
+\bibitem[Snelson and Ghahramani(2006)]{ic-Snelson2006}
+E.~Snelson and Z.~Ghahramani.
+\newblock {Sparse Gaussian Processes using Pseudo-inputs}.
+\newblock In Y.~Weiss, B.~Sch\"{o}lkopf, and J.~C. Platt, editors,
+  \emph{Advances in Neural Information Processing Systems 18}, pages
+  1257--1264. MIT Press, 2006.
+
+\bibitem[Snoek et~al.(2012)Snoek, Larochelle, and Adams]{ip-Snoek2012}
+J.~Snoek, H.~Larochelle, and R.~P. Adams.
+\newblock {Practical Bayesian Optimization of Machine Learning Algorithms}.
+\newblock In F.~Pereira, C.~J.~C. Burges, L.~Bottou, and K.~Q. Weinberger,
+  editors, \emph{Advances in Neural Information Processing Systems}, volume~25.
+  Curran Associates, Inc., 2012.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper/2012/file/05311655a15b75fab86956663e1819cd-Paper.pdf}.
+
+\bibitem[Srinivas et~al.(2010)Srinivas, Krause, Kakade, and
+  Seeger]{ip-Srinivas2010}
+N.~Srinivas, A.~Krause, S.~Kakade, and M.~Seeger.
+\newblock {Gaussian Process Optimization in the Bandit Setting: No Regret and
+  Experimental Design}.
+\newblock In \emph{Proceedings of the 27th International Conference on
+  International Conference on Machine Learning}, ICML'10, pages 1015--1022,
+  USA, 2010. Omnipress.
+\newblock ISBN 978-1-60558-907-7.
+
+\bibitem[Sun et~al.(2020)Sun, Wang, Li, Feng, Tian, Wu, and Wang]{ernie}
+Y.~Sun, S.~Wang, Y.~Li, S.~Feng, H.~Tian, H.~Wu, and H.~Wang.
+\newblock {Ernie 2.0: A continual pre-training framework for language
+  understanding}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~34, pages 8968--8975, 2020.
+
+\bibitem[Thompson(1935)]{j-Thompson1935}
+W.~R. Thompson.
+\newblock {On the Theory of Apportionment}.
+\newblock \emph{American Journal of Mathematics}, 57\penalty0 (2):\penalty0
+  450--456, 1935.
+\newblock ISSN 00029327, 10806377.
+
+\bibitem[Titsias(2009)]{ip-Titsias2009}
+M.~Titsias.
+\newblock {Variational Learning of Inducing Variables in Sparse Gaussian
+  Processes}.
+\newblock In D.~van Dyk and M.~Welling, editors, \emph{Proceedings of the
+  Twelth International Conference on Artificial Intelligence and Statistics},
+  volume~5 of \emph{Proceedings of Machine Learning Research}, pages 567--574,
+  Hilton Clearwater Beach Resort, Clearwater Beach, Florida USA, 16--18 Apr
+  2009. PMLR.
+
+\bibitem[Turner et~al.(2021)Turner, Eriksson, McCourt, Kiili, Laaksonen, Xu,
+  and Guyon]{j-turner2021bayesian}
+R.~Turner, D.~Eriksson, M.~McCourt, J.~Kiili, E.~Laaksonen, Z.~Xu, and
+  I.~Guyon.
+\newblock Bayesian optimization is superior to random search for machine
+  learning hyperparameter tuning: Analysis of the black-box optimization
+  challenge 2020.
+\newblock \emph{arXiv preprint arXiv:2104.10201}, 2021.
+
+\bibitem[Urteaga and Wiggins(2018)]{ip-Urteaga2018}
+I.~Urteaga and C.~Wiggins.
+\newblock {Variational inference for the multi-armed contextual bandit}.
+\newblock In A.~Storkey and F.~Perez-Cruz, editors, \emph{Proceedings of the
+  Twenty-First International Conference on Artificial Intelligence and
+  Statistics}, volume~84 of \emph{Proceedings of Machine Learning Research},
+  pages 698--706, Playa Blanca, Lanzarote, Canary Islands, 09--11 Apr 2018.
+  PMLR.
+
+\bibitem[Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez,
+  Kaiser, and Polosukhin]{vaswani2017attention}
+A.~Vaswani, N.~Shazeer, N.~Parmar, J.~Uszkoreit, L.~Jones, A.~N. Gomez,
+  {\L}.~Kaiser, and I.~Polosukhin.
+\newblock Attention is all you need.
+\newblock In \emph{Advances in neural information processing systems}, pages
+  5998--6008, 2017.
+
+\bibitem[Vu et~al.(2020)Vu, Phung, and Haffari]{j-Vu2020}
+T.-T. Vu, D.~Phung, and G.~Haffari.
+\newblock {Effective unsupervised domain adaptation with adversarially trained
+  language models}.
+\newblock \emph{arXiv preprint arXiv:2010.01739}, 2020.
+\newblock URL \url{https://arxiv.org/abs/2010.01739}.
+
+\bibitem[Wang et~al.(2018)Wang, Singh, Michael, Hill, Levy, and Bowman]{glue}
+A.~Wang, A.~Singh, J.~Michael, F.~Hill, O.~Levy, and S.~R. Bowman.
+\newblock {GLUE: A multi-task benchmark and analysis platform for natural
+  language understanding}.
+\newblock \emph{arXiv preprint arXiv:1804.07461}, 2018.
+
+\bibitem[Weidinger et~al.(2021)Weidinger, Mellor, Rauh, Griffin, Uesato, Huang,
+  Cheng, Glaese, Balle, Kasirzadeh, et~al.]{j-Weidinger2021}
+L.~Weidinger, J.~Mellor, M.~Rauh, C.~Griffin, J.~Uesato, P.-S. Huang, M.~Cheng,
+  M.~Glaese, B.~Balle, A.~Kasirzadeh, et~al.
+\newblock {Ethical and social risks of harm from language models}.
+\newblock \emph{arXiv preprint arXiv:2112.04359}, 2021.
+
+\bibitem[Wilson and Nickisch(2015)]{ip-Wilson2015}
+A.~Wilson and H.~Nickisch.
+\newblock {Kernel Interpolation for Scalable Structured Gaussian Processes
+  (KISS-GP)}.
+\newblock In F.~Bach and D.~Blei, editors, \emph{Proceedings of the 32nd
+  International Conference on Machine Learning}, volume~37 of \emph{Proceedings
+  of Machine Learning Research}, pages 1775--1784, Lille, France, 07--09 Jul
+  2015. PMLR.
+\newblock URL \url{https://proceedings.mlr.press/v37/wilson15.html}.
+
+\bibitem[Yu and Gen(2010)]{b-evolutionaryalgos}
+X.~Yu and M.~Gen.
+\newblock \emph{{Introduction to evolutionary algorithms}}.
+\newblock Springer Science \& Business Media, 2010.
+
+\bibitem[Zellers et~al.(2019)Zellers, Holtzman, Rashkin, Bisk, Farhadi,
+  Roesner, and Choi]{c4_realnews}
+R.~Zellers, A.~Holtzman, H.~Rashkin, Y.~Bisk, A.~Farhadi, F.~Roesner, and
+  Y.~Choi.
+\newblock {Defending Against Neural Fake News}.
+\newblock In H.~Wallach, H.~Larochelle, A.~Beygelzimer, F.~d\textquotesingle
+  Alch\'{e}-Buc, E.~Fox, and R.~Garnett, editors, \emph{Advances in Neural
+  Information Processing Systems}, volume~32. Curran Associates, Inc., 2019.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper/2019/file/3e9f0fc9b2f89e043bc6233994dfcf76-Paper.pdf}.
+
+\end{thebibliography}
