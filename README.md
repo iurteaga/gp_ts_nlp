@@ -19,7 +19,7 @@ A Bayesian optimization framework for efficient pre-training of Transformer-base
 
 ### arxiv_doc
 
-Directory with the manuscript as in arxiv 
+Directory with content of the arxiv manuscript [Multi-armed bandits for resource efficient, online optimization of language model pre-training: the use case of dynamic masking](http://arxiv.org/abs/2203.13151)
 
 ### bandit_config
 
