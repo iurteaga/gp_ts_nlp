@@ -4,7 +4,9 @@ A Bayesian optimization framework for efficient pre-training of Transformer-base
 
 ## Related publications
 
-- ACL 2023 Findings
+- ACL 2023 Findings:
+
+    - [Multi-armed bandits for resource efficient, online optimization of language model pre-training: the use case of dynamic masking](https://aclanthology.org/2023.findings-acl.675/)
 
 - NeurIPS 2022 Workshop onGaussian Processes, Spatiotemporal Modeling, and Decision-making Systems
 
@@ -23,7 +25,7 @@ Directory with content of the arxiv manuscript [Multi-armed bandits for resource
 
 ### bandit_config
 
-Directory where configuration files for the bandit agents is kept.
+Directory where configuration files for the bandit agents are kept.
 
 Two examples are provided:
 
